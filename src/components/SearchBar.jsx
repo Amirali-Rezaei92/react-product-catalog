@@ -1,6 +1,7 @@
 function SearchBar({ searchText, setSearchText }) {
 
     return (
+        
         <input type="text"
             placeholder="Search"
             value={searchText}
