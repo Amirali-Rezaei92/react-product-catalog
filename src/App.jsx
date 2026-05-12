@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import SearchBar from './components/SearchBar';
 import ProductList from "./components/ProductList";
+import './App.css';
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -23,14 +24,14 @@ function App() {
   );
 
   return (
-    <>
+    <div className="background p-5 text-center ">
       <SearchBar
         searchText={searchText}
         setSearchText={setSearchText}
       />
 
       <ProductList products={filteredProducts} />
-    </>
+    </div>
   );
 }
 
