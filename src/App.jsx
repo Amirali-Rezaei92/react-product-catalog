@@ -8,6 +8,8 @@ function App() {
   const [searchText, setSearchText] = useState('');
   const [loading, setLoading] = useState(true);
 
+
+
   const API = "https://fakestoreapi.com/products";
 
   useEffect(() => {
@@ -15,24 +17,38 @@ function App() {
       .then(response => response.json())
       .then(data => {
         setProducts(data);
-        setLoading(false);
+        setTimeout(() => {
+          setLoading(false);
+        }, 1000*4);
+        
       });
+
   }, []);
 
   const filteredProducts = products.filter(product =>
     product.title.toLowerCase().includes(searchText.toLowerCase())
   );
+  if (loading === true) {
+    return (
+      <div className="loader-container">
+        <div className="spinner"></div>
+      </div>
 
-  return (
-    <div className="background p-5 text-center ">
-      <SearchBar
-        searchText={searchText}
-        setSearchText={setSearchText}
-      />
+    );
+  } else {
+    return (
 
-      <ProductList products={filteredProducts} />
-    </div>
-  );
+      <div className="background p-5 text-center ">
+        <SearchBar
+          searchText={searchText}
+          setSearchText={setSearchText}
+        />
+
+        <ProductList products={filteredProducts} />
+      </div>
+    )
+  }
 }
 
 export default App;
+
